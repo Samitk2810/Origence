@@ -1,157 +1,224 @@
+# Origence — NLP-Based Academic Plagiarism Detection System
 
-# Origence
+Origence is a batch-based academic plagiarism detection system designed to ensure document originality within academic institutions. The system enables faculty to create batches, define plagiarism thresholds, and monitor submissions, while students can join batches and upload documents for automated plagiarism checking.
 
-A new Flutter project.
+---
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+### Faculty Module
 
-A few resources to get you started if this is your first Flutter project:
+* Create batches with unique batch codes
+* Configure similarity threshold for each batch
+* View all created batches
+* Track students enrolled in batches
+* Monitor student submissions
+* View uploaded documents batch-wise
+* Check similarity scores and document status
+* Track accepted and rejected submissions
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Student Module
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-📄 Origence — Academic Plagiarism Detection System
+* Register and log in securely
+* Join batches using batch codes
+* Upload academic documents
+* Automatic plagiarism checking before submission
+* View submission status and similarity score
+* Upload allowed only when similarity is below the defined threshold
 
-Origence is a batch-based academic plagiarism detection system designed to ensure document originality within academic environments. It allows faculty to create batches and define similarity thresholds, while students can join batches and submit documents that are checked for plagiarism.
+---
 
-🚀 Features:
-👨‍🏫 Faculty
-- Create batches with unique batch codes
-- Set allowed similarity threshold
-- View all created batches
-- View students joined in each batch
-- Track student submissions:
-  - Uploaded / Not Uploaded
-  - Accepted / Rejected
-  - Similarity score
-- **View all uploaded documents within each batch**
-- Monitor document status batch-wise
-👨‍🎓 Student
-- Register and login with role-based access
-- Join batches using batch code
-- Upload documents only inside a batch
-- Automatic plagiarism checking before upload
-- Upload allowed only if similarity < threshold
-📄 Faculty Document Monitoring
-Faculty can now:
-- View all documents uploaded by students in a batch
-- See which student uploaded which document
-- View:
-  - File name
-  - Upload time
-  - Similarity score
-  - Acceptance status (Accepted / Rejected)
-- Track submission progress of all students in the batch
+## NLP-Based Plagiarism Detection
 
-🧠 Core Logic:
-Each document is compared only with documents in the same batch
-Plagiarism is calculated using similarity logic
-If:
-Similarity < Threshold → Document Accepted
-Similarity ≥ Threshold → Document Rejected
-Threshold is defined by faculty and dynamically fetched from backend
+Origence incorporates Natural Language Processing (NLP) techniques to improve document comparison and plagiarism analysis.
 
-🏗️ System Architecture:
-User (Faculty/Student)
+### NLP Techniques Used
+
+* Text preprocessing
+* Tokenization
+* Text normalization
+* Stop-word removal
+* Similarity analysis
+* Batch-wise document comparison
+
+### Detection Workflow
+
+```text
+Document Upload
+       ↓
+Text Extraction
+       ↓
+NLP Preprocessing
+       ↓
+Similarity Analysis
+       ↓
+Threshold Validation
+       ↓
+Accepted / Rejected
+```
+
+---
+
+## Core Logic
+
+Each uploaded document is compared only with documents belonging to the same batch.
+
+### Decision Rules
+
+```text
+If Similarity Score < Threshold
+       → Accepted
+
+If Similarity Score ≥ Threshold
+       → Rejected
+```
+
+The similarity threshold is configured by faculty members and dynamically applied during document validation.
+
+---
+
+## System Architecture
+
+```text
+Faculty / Student
         ↓
-     Batch
+      Batch
         ↓
-  Document Upload
+Document Upload
         ↓
-Similarity Check (Batch-wise)
+NLP Processing
         ↓
- Accept / Reject
- 
-🛠️ Tech Stack:
-- Frontend
-- Flutter
-- Dart
-- Backend
-- Django (Python)
-- REST APIs
-- Database
-- SQLite
+Similarity Analysis
+        ↓
+Threshold Validation
+        ↓
+Accepted / Rejected
+```
 
-📂 Project Structure:
+---
+
+## Tech Stack
+
+### Frontend
+
+* Flutter
+* Dart
+
+### Backend
+
+* Django
+* Python
+* REST APIs
+
+### Database
+
+* SQLite
+
+### Concepts Used
+
+* Natural Language Processing (NLP)
+* Similarity Analysis
+* Role-Based Access Control
+* Batch Management System
+
+---
+
+## Project Structure
+
+```text
 origence/
-├── frontend/        # Flutter App
-├── backend/         # Django Backend
+│
+├── frontend/
+├── backend/
 │   ├── api/
 │   ├── auth_api/
 │   ├── core/
 │   ├── db.sqlite3
 │   └── manage.py
+│
+├── docs/
+│
+└── README.md
+```
 
-⚙️ Setup Instructions:
-1️⃣ Clone Repository
-git clone <your-repo-link>
-cd origence
+---
 
-2️⃣ Backend Setup (Django)
-cd backend
-python -m venv venv
-venv\Scripts\activate   # Windows
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+## Authentication System
 
-3️⃣ Frontend Setup (Flutter)
-cd frontend
-flutter pub get
-flutter run
+* Username and Password based authentication
+* Secure login mechanism
+* Role-based authorization
 
-🔐 Authentication System:
-- Username + Password based login
-- Role-based access:
-- Faculty
-- Student
+### Supported Roles
 
-📊 Database Design:
-Key Models:
-- User (with role)
-- Batch
-- Batch Membership (Student ↔ Batch)
-- Document
+* Faculty
+* Student
 
-Each document stores:
-- User
-- Batch
-- File
-- Similarity Score
-- Status (Accepted / Rejected)
-- Upload Timestamp
+---
 
-🔥 Key Highlights:
-- Batch-specific plagiarism detection
-- Role-based system (Faculty & Student)
-- Dynamic threshold control
-- Clean UI with structured workflow
-- Scalable architecture
+## Database Design
 
-📌 Future Enhancements:
-- AI-based semantic similarity detection
-- PDF highlighting of plagiarized content
-- Cross-batch comparison
-- Admin panel
-- Cloud deployment (AWS / Firebase)
-- Notifications system
+### Main Entities
 
+* User
+* Batch
+* Batch Membership
+* Document
 
-🤝 Contribution:
-This is a team project developed as part of academic coursework. Contributions and suggestions are welcome.
+### Document Attributes
 
-📜 License:
-This project is for educational purposes.
+* Student Information
+* Batch Information
+* Uploaded File
+* Similarity Score
+* Acceptance Status
+* Upload Timestamp
 
-👨‍💻 Authors:
-Arhat
+---
 
-⭐ Final Note:
-Origence ensures document originality with structured, batch-based plagiarism detection, making it a practical solution for academic institutions.
->>>>>>> e6c979d13afeae6334e0f63d6b4233253f55fc7a
+## Key Highlights
+
+* NLP-powered plagiarism detection
+* Batch-specific document comparison
+* Dynamic threshold control
+* Faculty monitoring dashboard
+* Role-based access management
+* Automated acceptance and rejection workflow
+* Scalable architecture for academic institutions
+
+---
+
+## Future Enhancements
+
+* AI-based semantic similarity detection
+* PDF plagiarism highlighting
+* Cross-batch plagiarism comparison
+* Admin dashboard
+* Cloud deployment (AWS/Firebase)
+* Email and in-app notifications
+* Advanced analytics and reporting
+
+---
+
+## Contribution
+
+This project was developed as a collaborative academic project. Contributions, suggestions, and improvements are welcome.
+
+---
+
+## Authors
+
+* Arhat Jadhav
+* Samit Kadam
+
+---
+
+## License
+
+This project is intended for educational and academic purposes.
+
+---
+
+## Final Note
+
+Origence provides an efficient and scalable solution for academic plagiarism detection by combining batch-based document management with NLP-driven similarity analysis, helping educational institutions maintain academic integrity.
