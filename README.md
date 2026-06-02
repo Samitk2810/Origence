@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# origence
+
+# Origence
 
 A new Flutter project.
 
